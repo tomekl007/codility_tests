@@ -17,7 +17,7 @@ public class LongerAscSlice {
         int[] B = {1,0,1,0};
         int[] C = {9,8,7,6,5,4,3,2,1,0};
         LongerAscSlice las = new LongerAscSlice();
-        las.solution(A);
+        System.out.println(las.solution(A));
 
 
     }
@@ -35,7 +35,15 @@ public class LongerAscSlice {
 
 
         System.out.println(indexes);
-        return 1;
+        int resultIndex = -1;
+        int currentValue = 0;
+        for(Map.Entry<Integer,Integer> entry : indexes.entrySet()){
+            if(entry.getValue() > currentValue){
+                currentValue = entry.getValue();
+                resultIndex =  entry.getKey();
+            }
+        }
+        return resultIndex;
     }
 
     private void loop(int[] A, Map<Integer, Integer> indexes,int index) {
@@ -48,7 +56,7 @@ public class LongerAscSlice {
             if(A.length >= 2 && (i != A.length-1 ) ){  //prevent ArrayOutOfBoundException
               currentNumber = A[i+1];
             }else
-              currentNumber = -100;
+              currentNumber = Integer.MIN_VALUE;
 
 
 
